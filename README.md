@@ -34,5 +34,5 @@ curl -fsSL https://raw.githubusercontent.com/manu-tech-code/surge-releases/HEAD/
 
 ```sh
 rm -rf /Applications/Surge.app ~/Library/Application\ Support/Surge
-defaults delete com.amalitech.Surge
+defaults delete com.manutech.Surge
 ```
