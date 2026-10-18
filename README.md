@@ -1,6 +1,6 @@
-# Surge Downloader Manager
+# Surge Downloader Manager (SDM)
 
-A fast, native downloader for the Mac. Every file is fetched over up to 32 parallel connections; it
+SDM is a fast, native downloader for the Mac. Every file is fetched over up to 32 parallel connections; it
 resumes after a quit or a crash, takes over downloads from your browser, and runs big ones on a schedule.
 
 This repository holds the app (**Releases**) and its installer. The source is private.

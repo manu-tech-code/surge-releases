@@ -24,10 +24,10 @@ say() { printf '\033[1m==>\033[0m %s\n' "$*"; }
 fail() { printf '\033[31mError:\033[0m %s\n' "$*" >&2; exit 1; }
 
 # macOS 15 or later, on Apple silicon (checked even under Rosetta).
-[ "$(uname -s)" = "Darwin" ] || fail "Surge is a Mac app."
-[ "$(sysctl -n hw.optional.arm64 2>/dev/null || echo 0)" = "1" ] || fail "Surge needs an Apple silicon Mac (M1 or later)."
+[ "$(uname -s)" = "Darwin" ] || fail "SDM is a Mac app."
+[ "$(sysctl -n hw.optional.arm64 2>/dev/null || echo 0)" = "1" ] || fail "SDM needs an Apple silicon Mac (M1 or later)."
 MACOS=$(sw_vers -productVersion)
-[ "${MACOS%%.*}" -ge 15 ] || fail "Surge needs macOS 15 or later; this Mac has macOS $MACOS."
+[ "${MACOS%%.*}" -ge 15 ] || fail "SDM needs macOS 15 or later; this Mac has macOS $MACOS."
 
 DEST="${SURGE_INSTALL_DIR:-/Applications}"
 if [ -z "${SURGE_INSTALL_DIR:-}" ] && [ ! -w "$DEST" ]; then DEST="$HOME/Applications"; fi
@@ -53,8 +53,8 @@ SRC="$MOUNT/$APP_NAME"
 [ -d "$SRC" ] || fail "The disk image doesn't contain $APP_NAME."
 codesign --verify --deep --strict "$SRC" >/dev/null 2>&1 || fail "The app's signature isn't valid."
 SIGNATURE=$(codesign -dv "$SRC" 2>&1)
-printf '%s\n' "$SIGNATURE" | grep -qx "Identifier=$BUNDLE_ID" || fail "That isn't Surge ($BUNDLE_ID)."
-printf '%s\n' "$SIGNATURE" | grep -qx "TeamIdentifier=$TEAM_ID" || fail "The app isn't signed by Surge's developer."
+printf '%s\n' "$SIGNATURE" | grep -qx "Identifier=$BUNDLE_ID" || fail "That isn't SDM ($BUNDLE_ID)."
+printf '%s\n' "$SIGNATURE" | grep -qx "TeamIdentifier=$TEAM_ID" || fail "The app isn't signed by SDM's developer."
 VERSION=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$SRC/Contents/Info.plist")
 
 # Quit a copy running from where this one goes, before replacing it.
