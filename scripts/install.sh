@@ -17,7 +17,7 @@ set -euo pipefail
 REPO="manu-tech-code/surge-releases"
 DMG_URL="https://github.com/$REPO/releases/latest/download/Surge.dmg"
 APP_NAME="Surge.app"
-BUNDLE_ID="com.amalitech.Surge"
+BUNDLE_ID="com.manutech.Surge"
 TEAM_ID="KNK4UH42NN"
 
 say() { printf '\033[1m==>\033[0m %s\n' "$*"; }
